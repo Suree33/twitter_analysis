@@ -13,11 +13,11 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
-user_id = 'RazerJP'
+user_id = 'goando'
 
 c = tweepy.Cursor(api.followers_ids, user_id)
 
-f = open('follower.'+user_id+'.txt', 'w')
+f = open('follower/'+user_id+'/follower.'+user_id+'.txt', 'w')
 count = 0
 for follower in c.items():
     count += 1

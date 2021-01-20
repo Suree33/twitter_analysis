@@ -17,12 +17,11 @@ user_id = 'RazerJP'
 
 c = tweepy.Cursor(api.followers_ids, user_id)
 
-f = open('follower.'+user_id+'.txt', 'w')
+f = open('./follower/' + user_id + '/follower.' + user_id + '.txt', 'w')
 count = 0
 for follower in c.items():
     count += 1
-    print(follower)
-    f.write(str(follower)+'\n')
+    f.write(str(follower) + '\n')
 
 f.close
 

@@ -1,4 +1,3 @@
-from sys import argv
 from time import sleep
 import pandas as pd
 from requests_oauthlib import OAuth1Session
@@ -17,21 +16,25 @@ url = 'https://api.twitter.com/1.1/search/tweets.json'
 '''
 keyword = '' #検索キーワード設定
 '''
-moto_tweet = 'ビジョン・ミッション・バリューを実現するためにYAMAPの新しいデザイン原則「RIDGE DESIGN」を作りました。'  # 検索ツイート
-moto_tweet_screen_name = '@goando'  # 元ユーザー表示名
+# 検索ツイート
+original_tweet = '来週、日本時間1月13日（水）3:00AMにRazerStore LIVE CES Editionが開催されます。'
+# 元ユーザー表示名
+original_tweet_screen_name = '@RazerJP'
 
 '''
 CSVファイル準備
 '''
-output_csv_file_name = 'retweet_info' + \
-    moto_tweet_screen_name+'.csv'  # 取得した値を格納ファイル名
+# 取得した値を格納ファイル名
+output_csv_file_name = 'RT/' + original_tweet_screen_name.lstrip('@') + \
+    '/retweet_info' + original_tweet_screen_name + '.csv'
 
 with open(output_csv_file_name, 'a') as f:
     writer = csv.writer(f, lineterminator='\n')
     header = ['ユーザー名', 'ユーザー表示名', 'ユーザーID', 'リツイートID', '時間', 'ツイート']
     writer.writerow(header)
 
-keyword = moto_tweet + ' filter:retweets ' + moto_tweet_screen_name  # リツイート検索限定
+# リツイート検索限定
+keyword = original_tweet + ' filter:retweets ' + original_tweet_screen_name
 
 count = 100
 params = {'q': keyword, 'count': count, 'max_id': max_id}
@@ -82,7 +85,7 @@ while(True):
 
     else:
         print('1５分待ちます')
-        sleep(15*60)
+        sleep(15 * 60)
 
 '''
 データフレームの確認用

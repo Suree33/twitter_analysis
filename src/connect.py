@@ -1,12 +1,14 @@
 import pandas as pd
-import csv
+
+# 処理するユーザー名
+user_name = 'goando'
 
 # リツイート
-df_RT = pd.read_csv('retweet_info.edited.csv')
+df_RT = pd.read_csv('retweet_info@' + user_name + '.edited.csv')
 RT_ids = df_RT['ユーザーID'].values.tolist()
 
 # フォロワー
-f = open('follower.RazerJP.txt')
+f = open('follower.' + user_name + '.txt')
 follower_ids = []
 line = f.readline().strip()
 while line:
@@ -35,4 +37,4 @@ connected_df = pd.DataFrame({
 
 print(connected_df)
 
-connected_df.to_csv('./connected.RazerJP.csv', index=False)
+connected_df.to_csv('./connected.' + user_name + '.csv', index=False)

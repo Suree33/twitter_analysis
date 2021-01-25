@@ -1,4 +1,3 @@
-from sys import argv
 from time import sleep
 import pandas as pd
 from requests_oauthlib import OAuth1Session
@@ -30,7 +29,8 @@ moto_tweet = '抽選で5名様に非売品のRazer Chroma Keycap Keychainをプ�
 moto_tweet_screen_name = '@RazerJP'  # 元ユーザー表示名
 
 
-keyword = moto_tweet + ' filter:retweets ' + moto_tweet_screen_name  # リツイート検索限定
+# リツイート検索限定
+keyword = moto_tweet + ' filter:retweets ' + moto_tweet_screen_name
 
 count = 100
 params = {'query': keyword, 'maxResults': count, 'max_id': max_id}
@@ -81,7 +81,7 @@ while(True):
 
     else:
         print('1５分待ちます')
-        sleep(15*60)
+        sleep(15 * 60)
 
 '''
 データフレームの確認用
